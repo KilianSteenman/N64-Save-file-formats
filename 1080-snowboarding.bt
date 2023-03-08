@@ -21,22 +21,43 @@ typedef struct {
     byte initials[3]; // A = 0, B = 1, C = 2 etc
 } Initials;
 
+typedef enum <byte> {
+    TAHOE_151,
+    MERLOT_147,
+    B_LINE_149,
+    SCOUT_156,
+    TAHOE_155,
+    SCOUT_LTD_162,
+    MERLOT_143,
+    B_LINE_154
+} Board;
+
+typedef enum <byte> {
+    DION_BLASTER,
+    KENSUKE_KIMACHI,
+    AKARI_HAYAMI,
+    RICKY_WINTERBORN,
+    ROB_HAYWOOD
+} Boarder;
+
 typedef struct {
-    byte unknown;  // Boarder / board?
+    Boarder boarder : 3;
+    Board board : 5;
     byte isBot; // 0 for CPU, -1 for player?
     Initials initials;
     Time time;
 } TimeTrialRecordSlot;
 
 typedef struct {
-    byte unknown;  // Boarder / board?
+    Boarder boarder : 3;
+    Board board : 5;
     Initials initials;
     byte unknown2[4]; // Trick score?
-} UnknownRecordSlot;
+} TrickAttackRecordSlot;
 
 typedef struct {
     TimeTrialRecordSlot timeTrialSlot[3];
-    UnknownRecordSlot unknownSlot[3];
+    TrickAttackRecordSlot trickAttackSlot[3];
 } HighScores;
 
 typedef struct {
