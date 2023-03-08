@@ -2,9 +2,9 @@
 //--- 010 Editor v13.0.1 Binary Template
 //
 //      File: 
-//   Authors: 
+//   Authors: Shadow-Link
 //   Version: 
-//   Purpose: 
+//   Purpose: 1080 Snowboarding save file format
 //  Category: 
 // File Mask: 
 //  ID Bytes: 
@@ -18,24 +18,85 @@ typedef struct {
 } Time;
 
 typedef struct {
+    byte initials[3]; // A = 0, B = 1, C = 2 etc
+} Initials;
+
+typedef struct {
     byte unknown;  // Boarder / board?
     byte isBot; // 0 for CPU, -1 for player?
-    byte initials[3];
+    Initials initials;
     Time time;
 } TimeTrialRecordSlot;
 
 typedef struct {
-    TimeTrialRecordSlot slot[3];
-    byte unknown[24];
-} TimeTrialRecords;
+    byte unknown;  // Boarder / board?
+    Initials initials;
+    byte unknown2[4]; // Trick score?
+} UnknownRecordSlot;
 
 typedef struct {
-    TimeTrialRecords levelCrystalLake;
-    TimeTrialRecords levelCrystalPeak;
-    TimeTrialRecords levelGoldenForest;
-    TimeTrialRecords levelMountainVillage;
-    TimeTrialRecords levelDragonCave;
+    TimeTrialRecordSlot timeTrialSlot[3];
+    UnknownRecordSlot unknownSlot[3];
+} HighScores;
+
+typedef struct {
+    byte unknown[13];
+    Initials initials;
+    byte unknown2[16];
+} ContestScores;
+
+typedef struct {
+    HighScores levelAirMake;
+    HighScores levelHalfPipe;
+    HighScores levelCrystalLake;
+    HighScores levelCrystalPeak;
+    HighScores levelGoldenForest;
+    HighScores levelMountainVillage;
+    HighScores levelDragonCave;
+    HighScores levelDeadlyFall;
+    ContestScores contestScores[3]; // TODO: Maybe the 3 levels (novice etc) instead?
+} HighScoreData;
+
+typedef enum <byte> {
+    STEREO,
+    HEADSET,
+    MONO
+} AudioSetup;
+
+typedef enum <byte> {
+    ENGLISH,
+    JAPANESE
+} Language;
+
+typedef struct {
+    byte backgroundMusic; // 1 - 10
+    byte soundEffects; // 1 - 10
+    byte voice; // 1 - 10
+    byte padding[3];
+} SoundSettings;
+
+typedef struct {
+    HighScoreData scoreData;
+    byte unknown3[21];
+
+    // Audio and language setting combined in single byte
+    AudioSetup audioSetup : 2;
+    Language language : 1;
+
+    byte unknown4[12];
+    SoundSettings soundSettings;
+    byte unknown5[32];
+} SaveData;
+
+typedef struct {
+    byte hash1[4]; // TODO: Hash ?
+    byte hash2[4]; // TODO: Hash ?
+    
+    SaveData saveData;
 } SaveFile;
 
-FSeek(0x7E38);
-SaveFile file;
+SaveFile saveFile;
+
+// Temp seek, backup data?
+FSeek(0x7DD8);
+SaveData backup;
