@@ -1,4 +1,7 @@
 # N64 rom formats
 *.z64
 *.n64
+*.ram
 
+# Mac
+.DS_Store

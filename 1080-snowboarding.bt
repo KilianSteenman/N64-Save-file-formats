@@ -1,0 +1,41 @@
+//------------------------------------------------
+//--- 010 Editor v13.0.1 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+typedef struct {
+    byte minutes;
+    byte seconds;
+    byte miliseconds;
+} Time;
+
+typedef struct {
+    byte unknown;  // Boarder / board?
+    byte isBot; // 0 for CPU, -1 for player?
+    byte initials[3];
+    Time time;
+} TimeTrialRecordSlot;
+
+typedef struct {
+    TimeTrialRecordSlot slot[3];
+    byte unknown[24];
+} TimeTrialRecords;
+
+typedef struct {
+    TimeTrialRecords levelCrystalLake;
+    TimeTrialRecords levelCrystalPeak;
+    TimeTrialRecords levelGoldenForest;
+    TimeTrialRecords levelMountainVillage;
+    TimeTrialRecords levelDragonCave;
+} SaveFile;
+
+FSeek(0x7E38);
+SaveFile file;
