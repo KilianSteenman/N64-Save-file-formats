@@ -1,0 +1,135 @@
+//------------------------------------------------
+//--- 010 Editor v12.0.1 Binary Template
+//
+//      File: Super Mario 64 Save File
+//   Authors: Shadow-Link
+//   Version: 1.0
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+//-------------------
+// Common structs
+//-------------------
+
+typedef struct {
+    byte courseId;
+    byte areaId;
+    short positionX;
+    short positionY;
+    short positionZ;
+} MarioCapLocation;
+
+typedef struct {
+    byte lostCapInLevelId : 1;
+    byte lostCapInShiftingSandLand : 1;
+    byte lostCapInTallTallMountain : 1;
+    byte lostCapInSnowmansLand : 1;
+    byte seenStarDoorAnimationThirdFloor : 1;
+    byte unknown : 1;
+    byte unknown : 1;
+    byte unknown : 1;
+
+    byte isPortalMovedBack : 1;
+    byte isCastleMoatDrained : 1;
+    byte seenStarDoorAnimationSeenSecretSlide : 1;
+    byte seenStarDoorAnimationSeenWhompsFortress : 1;
+    byte seenStarDoorAnimationSeenCoolCoolMountain : 1;
+    byte seenStarDoorAnimationSeenJollyRogerBay : 1;
+    byte seenStarDoorAnimationBowserInTheDarkWorld : 1;
+    byte seenStarDoorAnimationBowserInTheFireSea : 1;
+
+    byte isSaveSlotInUse : 1;
+    byte isWingCapActivated : 1;
+    byte isMetalCapActivated : 1;
+    byte isVanishCapActivated : 1;
+    byte hasBasementKey : 1;
+    byte hasSecondFloorKey : 1;
+    byte isBasementUnlocked : 1;
+    byte isSecondFloorUnlocked : 1;
+} MiscFlags;
+
+typedef struct {
+    byte star1 : 1;
+    byte star2 : 1;
+    byte star3 : 1;
+    byte star4 : 1;
+    byte star5 : 1;
+    byte star6 : 1;
+    byte star7 : 1;
+    byte cannonUnlockedForPreviousLevel : 1;
+} LevelFlags;
+
+typedef struct {
+    LevelFlags castle;
+    MiscFlags miscFlags;
+    LevelFlags bobombBattlefield;
+    LevelFlags whompsFortress;
+    LevelFlags jollyRogerBay;
+    LevelFlags coolCoolMountain;
+    LevelFlags bigBoosHaunt;
+    LevelFlags hazyMazeCave;
+    LevelFlags lethalLavaLand;
+    LevelFlags shiftingSandLand;
+    LevelFlags direDireDocks;
+    LevelFlags snowmansLand;
+    LevelFlags wetDryLand;
+    LevelFlags tallTallMountain;
+    LevelFlags tinyHugeIsland;
+    LevelFlags tickTockClock;
+    LevelFlags rainbowRide;
+    LevelFlags bowserDarkWorld;
+    LevelFlags bowserFireSea;
+    LevelFlags bowserSky;
+    LevelFlags princessSecretSlide;
+    LevelFlags cavernOfTheMetalCap;
+    LevelFlags towerOfTheWingCap;
+    LevelFlags vanishCapUnderTheMoat;
+    LevelFlags wingMarioOverTheRainbow;
+    LevelFlags secretAquarium;
+    LevelFlags theEnd;
+} Flags;
+
+typedef struct {
+    byte bobombBattlefield;
+    byte whompsFortress;
+    byte jollyRogerBay;    byte coolCoolMountain;    byte bigBoosHaunt;    byte hazyMazeCave;    byte lethalLavaLand;    byte shiftingSandLand;    byte direDireDocks;    byte snowmansLand;    byte wetDryLand;    byte tallTallMountain;    byte tinyHugeIsland;    byte tickTockClock;    byte rainbowRide;
+} CoinScores;
+
+typedef struct {
+    byte coinHighScores[16];
+    short soundSetting;
+    short languageSetting;
+    byte unknown[8];
+    char magic[2]; // HI
+    ushort checksum;
+} GlobalData;
+
+typedef struct {
+    MarioCapLocation marioCapLocation;
+    Flags flags;
+    CoinScores coinScores;
+    char magic[2]; // DA
+    ushort checksum;
+} GameData;
+
+//-------------------
+// Start file
+//-------------------
+typedef struct {
+    GameData gameDataSlot1;
+    GameData gameDataSlot1Backup;
+    GameData gameDataSlot2;
+    GameData gameDataSlot2Backup;
+    GameData gameDataSlot3;
+    GameData gameDataSlot3Backup;
+    GameData gameDataSlot4;
+    GameData gameDataSlot5Backup;
+    GlobalData globalData;
+    GlobalData globalDataBackup;
+} MarioSaveFile;
+
+MarioSaveFile file;
