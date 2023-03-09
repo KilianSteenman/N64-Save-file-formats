@@ -97,7 +97,7 @@ typedef struct {
 
     Checksum checksum; // ?
     //byte unknown[8];
-    ContestScores contestScores[3]; // TODO: Maybe the 3 levels (novice etc) instead?
+    ContestScores contestScores[3];
 } HighScoreData;
 
 typedef enum <byte> {
@@ -118,11 +118,17 @@ typedef struct {
     byte padding[3];
 } SoundSettings;
 
+typedef enum <ushort> {
+    NORMAL = 1,
+    HARD = 2,
+    EXPERT = 3
+} MatchRace;
+
 typedef struct {
     HighScoreData scoreData;
     Checksum checksum1;
     ushort unknown1; // Changes when finishing a level?
-    ushort unlockedLevel;
+    MatchRace unlockedMatchRace;
     byte padding; // Or part of the AudioSetup / Language?
 
     // Audio and language setting combined in single byte
