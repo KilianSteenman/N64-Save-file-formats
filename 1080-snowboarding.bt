@@ -12,6 +12,11 @@
 //------------------------------------------------
 
 typedef struct {
+    uint value1;
+    uint value2;
+} Checksum;
+
+typedef struct {
     byte minutes;
     byte seconds;
     byte miliseconds;
@@ -90,7 +95,8 @@ typedef struct {
     HighScores levelDragonCave;
     HighScores levelDeadlyFall;
 
-    byte unknown[8];
+    Checksum checksum; // ?
+    //byte unknown[8];
     ContestScores contestScores[3]; // TODO: Maybe the 3 levels (novice etc) instead?
 } HighScoreData;
 
@@ -114,20 +120,25 @@ typedef struct {
 
 typedef struct {
     HighScoreData scoreData;
-    byte unknown3[13];
+    Checksum checksum1;
+    ushort unknown1; // Changes when finishing a level?
+    ushort unlockedLevel;
+    byte padding; // Or part of the AudioSetup / Language?
 
     // Audio and language setting combined in single byte
     AudioSetup audioSetup : 2;
     Language language : 1;
 
-    byte unknown4[12];
+    byte unknown2[8];
+    byte unknown3; // Changes when finishing a level
+    byte unknown4[3];
     SoundSettings soundSettings;
-    byte unknown5[32];
+    Checksum checksum2;
+    byte unknown5[24];
 } SaveData;
 
 typedef struct {
-    byte hash1[4]; // TODO: Hash ?
-    byte hash2[4]; // TODO: Hash ?
+    Checksum checksum;
     
     SaveData saveData;
 } SaveFile;
