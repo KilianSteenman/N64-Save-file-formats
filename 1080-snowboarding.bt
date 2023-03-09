@@ -46,7 +46,7 @@ typedef struct {
 } BoarderInfo;
 
 typedef struct {
-    uint unknown1;
+    uint score;
 } Score;
 
 typedef struct {
@@ -132,6 +132,7 @@ typedef struct {
     SaveData saveData;
 } SaveFile;
 
+BigEndian();
 SaveFile saveFile;
 
 // Temp seek, backup data?
