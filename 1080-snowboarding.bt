@@ -43,16 +43,23 @@ typedef enum <byte> {
 typedef struct {
     Boarder boarder : 3;
     Board board : 5;
+} BoarderInfo;
+
+typedef struct {
+    uint unknown1;
+} Score;
+
+typedef struct {
+    BoarderInfo boarderInfo;
     byte isBot; // 0 for CPU, -1 for player?
     Initials initials;
     Time time;
 } TimeTrialRecordSlot;
 
 typedef struct {
-    Boarder boarder : 3;
-    Board board : 5;
+    BoarderInfo boarderInfo;
     Initials initials;
-    byte unknown2[4]; // Trick score?
+    Score score; 
 } TrickAttackRecordSlot;
 
 typedef struct {
@@ -61,9 +68,16 @@ typedef struct {
 } HighScores;
 
 typedef struct {
-    byte unknown[13];
+    byte unknown[3];
+    BoarderInfo boarderInfo;
+    byte unknown1[1];
     Initials initials;
-    byte unknown2[16];
+    Score crystalLake;
+    Score airMake;
+    Score crystalPeak;
+    Score halfPipe;
+    Score goldenForest;
+    Score totalScore;
 } ContestScores;
 
 typedef struct {
@@ -75,6 +89,8 @@ typedef struct {
     HighScores levelMountainVillage;
     HighScores levelDragonCave;
     HighScores levelDeadlyFall;
+
+    byte unknown[8];
     ContestScores contestScores[3]; // TODO: Maybe the 3 levels (novice etc) instead?
 } HighScoreData;
 
@@ -90,15 +106,15 @@ typedef enum <byte> {
 } Language;
 
 typedef struct {
-    byte backgroundMusic; // 1 - 10
-    byte soundEffects; // 1 - 10
-    byte voice; // 1 - 10
+    byte backgroundMusic;   // 0 - 10
+    byte soundEffects;      // 0 - 10
+    byte voice;             // 0 - 10
     byte padding[3];
 } SoundSettings;
 
 typedef struct {
     HighScoreData scoreData;
-    byte unknown3[21];
+    byte unknown3[13];
 
     // Audio and language setting combined in single byte
     AudioSetup audioSetup : 2;
