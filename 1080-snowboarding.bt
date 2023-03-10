@@ -96,9 +96,12 @@ typedef struct {
     HighScores levelDeadlyFall;
 
     Checksum checksum; // ?
-    //byte unknown[8];
-    ContestScores contestScores[3];
 } HighScoreData;
+
+typedef struct {
+    ContestScores contestScores[3];
+    Checksum checksum; // ?
+} ContestScoreData;
 
 typedef enum <byte> {
     STEREO,
@@ -125,8 +128,9 @@ typedef enum <ushort> {
 } MatchRace;
 
 typedef struct {
-    HighScoreData scoreData;
-    Checksum checksum1;
+    HighScoreData highScoreData;
+    ContestScoreData contestScoreData;
+
     ushort unknown1; // Changes when finishing a level?
     MatchRace unlockedMatchRace;
     byte padding; // Or part of the AudioSetup / Language?
@@ -139,8 +143,10 @@ typedef struct {
     byte unknown3; // Changes when finishing a level
     byte unknown4[3];
     SoundSettings soundSettings;
-    Checksum checksum2;
-    byte unknown5[24];
+    Checksum checksum; // ?
+
+    byte unknown5[16];
+    Checksum checksum2; // ?
 } SaveData;
 
 typedef struct {
