@@ -1,0 +1,91 @@
+//------------------------------------------------
+//--- 010 Editor v13.0.1 Binary Template
+//
+//      File: Diddy Kong Racing
+//   Authors: Shadow-Link
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+typedef struct {
+    ushort unused   : 1;
+    ushort initial1 : 5; // 0 = A, 1 = B etc
+    ushort initial2 : 5; // 0 = A, 1 = B etc
+    ushort initial3 : 5; // 0 = A, 1 = B etc
+} Initials;
+
+typedef struct {
+    byte balloon1 : 1;
+    byte balloon2 : 1;  // Flying balloon to the side of Door 1
+    byte balloon3 : 1;
+    byte balloon4 : 1;
+    byte balloon5 : 1;
+    byte balloon6 : 1;  // Vehicle balloon in front of Door 1
+    byte balloon7 : 1;
+} MainIslandBalloons;
+
+typedef struct {
+    byte balloonCount : 7;
+    byte unknown : 1;
+} BalloonCount;
+
+typedef struct {
+    byte balloon1: 1;
+    byte balloon2: 1;
+    byte balloon3: 1;
+    byte balloon4: 1;
+    byte course3: 1;
+    byte course1: 1;
+    byte course2: 1;
+    byte balloon8: 1;   // Balloon ocean main island?
+} WorldFlags;
+
+typedef struct {
+    byte unknown1 : 1;
+    byte keyUnlockedWorld1 : 1;
+    byte unknown2 : 1;
+    byte unknown3 : 1;
+    byte unknown4 : 1;
+    byte unknown5 : 1;
+    byte unknown6 : 1;
+    byte unknown7 : 1;
+} KeyFlags2;
+
+typedef struct {
+    byte unknown1 : 1;
+    byte unknown2 : 1;
+    byte unknown3 : 1;
+    byte unknown4 : 1;
+    byte unknown5 : 1;
+    byte unknown6 : 1;
+    byte keyUnlockedWorld1 : 1;
+    byte unknown7 : 1;
+} KeyFlags;
+
+typedef struct {
+    ushort checksum;
+    byte unknown1[12];
+    BalloonCount balloonCount;
+    byte unknown3[5];   // First byte seems to change when a balloon is picked up
+    MainIslandBalloons mainIslandBalloons;
+    byte unknown4;      // TODO: Changes when balloon is picked up in main world?
+    byte unknown5;
+    WorldFlags world1; // TODO: Partly contains first world ?
+    byte unknown6[8];
+    KeyFlags keyFlags; // TODO: Flag was set when key was picked up ? 
+    byte unknown7[2];
+    KeyFlags2 keyFlags2; // TODO: Flag was set when key was picked up ?
+    Initials initials; 
+    byte unknown8;
+} SaveSlot;
+
+typedef struct {
+    SaveSlot slot[3];
+} SaveFile;
+
+BigEndian();
+SaveFile saveFile;
