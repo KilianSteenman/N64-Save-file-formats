@@ -67,7 +67,7 @@ typedef struct {
 } KeyFlags;
 
 typedef struct {
-    ushort checksum;
+    ushort checksum;    // Bytes + 5
     byte unknown1[12];
     BalloonCount balloonCount;
     byte unknown3[5];   // First byte seems to change when a balloon is picked up
@@ -84,7 +84,18 @@ typedef struct {
 } SaveSlot;
 
 typedef struct {
+    byte checksum;  // Bytes + 5
+    byte unknown[3];
+
+    uint unknown2 : 6;
+    uint subtitlesEnabled: 1;
+    uint unknown3 : 1;
+} Settings;
+
+typedef struct {
     SaveSlot slot[3];
+    byte unknown[3];
+    Settings settings;
 } SaveFile;
 
 BigEndian();
