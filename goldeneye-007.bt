@@ -1,0 +1,47 @@
+//------------------------------------------------
+//--- 010 Editor v13.0.1 Binary Template
+//
+//      File: Goldeneye 007
+//   Authors: Shadow-Link
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+typedef struct {
+    uint64 checksum;
+} Checksum;
+
+typedef struct {
+    Checksum checksum;
+    uint64 unknown1;
+} SectionHeader;
+
+typedef struct {
+    BitfieldDisablePadding();
+    ushort timeDam: 10;    ushort timeFacility : 10;    ushort timeRunway : 10;    ushort timeSurface1 : 10;    ushort timeBunker1 : 10;    ushort timeSilo : 10;    ushort timeFrigate : 10;    ushort timeSurface2 : 10;    ushort timeBunker2 : 10;    ushort timeStatue : 10;    ushort timeArchives : 10;    ushort timeStreets : 10;    ushort timeDepot : 10;    ushort timeTrain : 10;    ushort timeJungle : 10;    ushort timeControl : 10;    ushort timeCaverns : 10;    ushort timeCradle : 10;    ushort timeAztec : 10;
+    ushort timeEgypt : 10;
+    BitfieldEnablePadding();
+} Times;
+
+typedef struct {
+    SectionHeader sectionHeader;
+    ushort unknown;
+
+    Times agentTimes;
+    Times secretAgentTimes;
+    Times double0AgentTimes;
+} SaveSlot;
+
+typedef struct {
+    Checksum checksum;
+    byte unknown[0x18];
+
+    SaveSlot slot[5] <optimize=false>;
+} SaveFile;
+
+BigEndian();
+SaveFile saveFile;

@@ -83,6 +83,11 @@ typedef struct {
     byte unknown8;
 } SaveSlot;
 
+typedef enum {
+    ENGLISH = 0;
+    FRENCH = 8;
+} Language;
+
 typedef struct {
     byte checksum;  // Bytes + 5
     byte unknown[3];
@@ -90,6 +95,9 @@ typedef struct {
     uint unknown2 : 6;
     uint subtitlesEnabled: 1;
     uint unknown3 : 1;
+
+    byte unknown4[2];
+    Language language;
 } Settings;
 
 typedef struct {
