@@ -1,0 +1,89 @@
+//------------------------------------------------
+//--- 010 Editor v13.0.1 Binary Template
+//
+//      File: Wave Race 64
+//   Authors: Shadow-Link
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+typedef struct {
+    uint checksum;
+} Checksum;
+
+typedef struct {
+    char name[10];
+} CustomName;
+
+typedef enum <byte> {
+    STEREO = 0,
+    HEADPHONES = 1,
+    MONO = 2
+} AudioSetting;
+
+typedef struct {
+    AudioSetting audioSetting : 2;
+    byte isMusicDisabled: 1;
+
+    byte padding[3];
+} AudioOptions;
+
+typedef struct {
+    ushort unused   : 1;
+    ushort initial1 : 5; // 1 = A, 2 = B etc
+    ushort initial2 : 5; // 1 = A, 2 = B etc
+    ushort initial3 : 5; // 1 = A, 2 = B etc
+} Initials;
+
+typedef enum <byte> {
+    NORMAL,
+    HARD,
+    EXPERT,
+    REVERSE
+} Level;
+
+typedef struct {
+    byte unknown[2]; // Time ?
+    Initials initials;
+    Level level;
+    byte unknown2; // Player?
+} Rank;
+
+typedef struct {
+    byte unknown[2];
+    Initials initials;
+    Level level;
+} Lap;
+
+typedef struct {
+    byte unknown;
+    Rank rank1;
+    Rank rank2;
+    Rank rank3;
+    Lap lap;
+} TimeRanks;
+
+typedef struct {
+    Checksum checksum;
+    byte unknown[8]; // ?
+    AudioOptions audioOptions;
+    
+    CustomName names[4];
+
+    byte unknown2[0x28];
+    TimeRanks timeRanksSunnyBeach;
+    TimeRanks timeRanksSunsetBay;
+    TimeRanks timeRanksDrakeLake;
+    TimeRanks timeRanksMarineFortress;
+    TimeRanks timeRanksPortBlue;
+    TimeRanks timeRanksTwilightCity;
+    TimeRanks timeRanksGlacierCost;
+    TimeRanks timeRanksSouthernIsland;
+} SaveFile;
+
+BigEndian();
+SaveFile saveFile;
