@@ -1,7 +1,7 @@
 # N64 Save file formats
 Collection of save file formats for Nintendo 64 games
 
-All formats are defined in the 010 template spec.
+All formats are defined using 010 binary templates.
 
 | Game | Region | Format | Template | Status | Credits |
 |------|--------|--------|--------- |--------|---------|
