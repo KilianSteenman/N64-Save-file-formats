@@ -33,11 +33,11 @@ typedef struct {
 } AudioOptions;
 
 typedef struct {
-    ushort unused   : 1;
+    ushort usedCustomSettings : 1;
     ushort initial1 : 5; // 1 = A, 2 = B etc
     ushort initial2 : 5; // 1 = A, 2 = B etc
     ushort initial3 : 5; // 1 = A, 2 = B etc
-} Initials;
+} Initials; // TODO: Rename this to RecordInfo or something?
 
 typedef enum <byte> {
     NORMAL,
@@ -45,6 +45,13 @@ typedef enum <byte> {
     EXPERT,
     REVERSE
 } Level;
+
+typedef enum <byte> {
+    RYOTA_HAYAMI = 0,
+    AYUMI_STEWART = 1,
+    MILES_JETER = 2,
+    DAVE_MARINER = 3
+} Character;
 
 typedef struct {
     byte unknown[2]; // Time ?
@@ -68,6 +75,37 @@ typedef struct {
 } TimeRanks;
 
 typedef struct {
+    Character character : 3;
+    short score;
+    Initials initials;
+} HighScore;
+
+typedef struct {
+    HighScore highScores[3];
+} Scores;
+
+typedef struct {
+    TimeRanks timeRanksSunnyBeach;
+    TimeRanks timeRanksSunsetBay;
+    TimeRanks timeRanksDrakeLake;
+    TimeRanks timeRanksMarineFortress;
+    TimeRanks timeRanksPortBlue;
+    TimeRanks timeRanksTwilightCity;
+    TimeRanks timeRanksSouthernIsland;
+    TimeRanks timeRanksGlacierCost;
+
+    Scores scoresDolphinPark;
+    Scores scoresSunnyBeach;
+    Scores scoresSunsetBay;
+    Scores scoresDrakeLake;
+    Scores scoresMarineFortress;
+    Scores scoresPortBlue;
+    Scores scoresTwilightCity;
+    Scores scoresSouthernIsland;
+    Scores scoresGlacierCost;
+} Records;
+
+typedef struct {
     Checksum checksum;
     byte unknown[8]; // ?
     AudioOptions audioOptions;
@@ -75,14 +113,7 @@ typedef struct {
     CustomName names[4];
 
     byte unknown2[0x28];
-    TimeRanks timeRanksSunnyBeach;
-    TimeRanks timeRanksSunsetBay;
-    TimeRanks timeRanksDrakeLake;
-    TimeRanks timeRanksMarineFortress;
-    TimeRanks timeRanksPortBlue;
-    TimeRanks timeRanksTwilightCity;
-    TimeRanks timeRanksGlacierCost;
-    TimeRanks timeRanksSouthernIsland;
+    Records records;
 } SaveFile;
 
 BigEndian();
