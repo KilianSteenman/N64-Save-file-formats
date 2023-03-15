@@ -37,7 +37,7 @@ typedef struct {
     ushort initial1 : 5; // 1 = A, 2 = B etc
     ushort initial2 : 5; // 1 = A, 2 = B etc
     ushort initial3 : 5; // 1 = A, 2 = B etc
-} Initials; // TODO: Rename this to RecordInfo or something?
+} Initials; // TODO: Rename this to RecordInfo or something / inline?
 
 typedef enum <byte> {
     NORMAL,
@@ -142,7 +142,7 @@ typedef struct {
     byte padding[7];
 
     Records records;
-    UnknownData unknownData[8];
+    UnknownData unknownData[8]; // Seems to be something with record data
     UnknownData2 unknownData2[8];
 } SaveFile;
 

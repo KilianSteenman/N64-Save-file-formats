@@ -9,5 +9,5 @@ All formats are defined in the 010 template spec.
 | Diddy Kong Racing | US | EEPROM | [diddy-kong-racing.bt](../main/diddy-kong-racing.bt) | 5% | Shadow-Link |
 | Goldeneye 007 | US | EEPROM | [goldeneye-007.bt](../main/goldeneye-007.bt) | 1% | [zeroKilo](https://github.com/zeroKilo/GE64SaveEditorWV/) |
 | Super Mario 64 | US | EEPROM | [super-mario-64.bt](../main/super-mario-64.bt) | 98% | [Bryc](http://bryc.github.io/sm64eep/) |
-| Wave Race 64 | US | EEPROM | [wave-race-64.bt](../main/wave-race-64.bt) | 20% | Shadow-Link |
+| Wave Race 64 | US | EEPROM | [wave-race-64.bt](../main/wave-race-64.bt) | 70% | Shadow-Link |
 
