@@ -122,11 +122,8 @@ typedef struct {
 } WatercraftSettings;
 
 typedef struct {
-    Character unknownCharacter1 : 3;    // ?
-    byte unknown;                       // ?
-    Character character : 3;            // ?
-    ushort unknown2;                    // ?
-} UnknownData2;
+    byte unknown[5];
+} UnknownData;
 
 typedef enum <byte> {
     DEFAULT,
@@ -146,12 +143,12 @@ typedef struct {
     byte padding1[4];
     byte someNormalValue;   // 1 by default, 6 when finished normal?
     byte someHardValue;     // 0 by default, 6 when finished hard?
-    byte someExpertValue;   // ?
-    byte someReverseValue;  // ?
+    byte someExpertValue;   // 0 by default, 7 when finished expert?
+    byte someReverseValue;  // 0 by default, 7 when finished reversed?
     
     AudioSetting audioSetting : 2;
     byte isMusicDisabled : 1;
-    byte unknown : 1;
+    byte unknown : 1;           // ?
     byte didFinishReverse : 1;  // TODO: Double check
     byte didFinishExpert : 1;   // TODO: Double check
     byte didFinishHard : 1;     // TODO: Double check
@@ -166,7 +163,7 @@ typedef struct {
 
     Records records;
 
-    UnknownData2 unknownData2[8];
+    UnknownData unknownData[8];
 } SaveFile;
 
 BigEndian();
