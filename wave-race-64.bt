@@ -26,13 +26,6 @@ typedef enum <byte> {
 } AudioSetting;
 
 typedef struct {
-    AudioSetting audioSetting : 2;
-    byte isMusicDisabled: 1;
-
-    byte padding[3];
-} AudioOptions;
-
-typedef struct {
     ushort usedCustomSettings : 1;
     ushort initial1 : 5; // 1 = A, 2 = B etc
     ushort initial2 : 5; // 1 = A, 2 = B etc
@@ -132,15 +125,26 @@ typedef struct {
 
 typedef struct {
     Checksum checksum;
-    byte padding[4];
-    byte unknown[4]; // ?
-    AudioOptions audioOptions;
+    byte padding1[4];
+    byte someNormalValue;   // 1 by default, 6 when finished normal?
+    byte someHardValue;     // 0 by default, 6 when finished hard?
+    byte someExpertValue;   // ?
+    byte someReverseValue;  // ?
+    
+    AudioSetting audioSetting : 2;
+    byte isMusicDisabled : 1;
+    byte unknown : 1;
+    byte didFinishReverse : 1;  // TODO: Double check
+    byte didFinishExpert : 1;   // TODO: Double check
+    byte didFinishHard : 1;     // TODO: Double check
+    byte didFinishNormal : 1;   // TODO: Double check
+    byte padding2[3];
     
     CustomName names[4];
     WatercraftSettings customSettings[4];
     WatercraftSettings defaultSettings[4]; // ? 
     Conditions conditions[3];
-    byte padding[7];
+    byte padding3[7];
 
     Records records;
     UnknownData unknownData[8]; // Seems to be something with record data
