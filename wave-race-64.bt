@@ -106,13 +106,22 @@ typedef struct {
 } Records;
 
 typedef struct {
+    byte handling;
+    byte engine;
+    byte grip;
+} WatercraftSettings;
+
+typedef struct {
     Checksum checksum;
     byte unknown[8]; // ?
     AudioOptions audioOptions;
     
     CustomName names[4];
+    WatercraftSettings customSettings[4];
+    WatercraftSettings defaultSettings[4]; // ? 
+    byte unknown2[9];
+    byte padding[7];
 
-    byte unknown2[0x28];
     Records records;
 } SaveFile;
 
