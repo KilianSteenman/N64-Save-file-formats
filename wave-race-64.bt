@@ -132,7 +132,8 @@ typedef struct {
 
 typedef struct {
     Checksum checksum;
-    byte unknown[8]; // ?
+    byte padding[4];
+    byte unknown[4]; // ?
     AudioOptions audioOptions;
     
     CustomName names[4];
