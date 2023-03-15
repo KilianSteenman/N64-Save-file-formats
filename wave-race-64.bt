@@ -103,6 +103,8 @@ typedef struct {
     Scores scoresTwilightCity;
     Scores scoresSouthernIsland;
     Scores scoresGlacierCost;
+    
+    byte padding;
 } Records;
 
 typedef struct {
@@ -112,6 +114,27 @@ typedef struct {
 } WatercraftSettings;
 
 typedef struct {
+    byte unknown[6];
+} UnknownData;
+
+typedef struct {
+    byte unknown[5];
+} UnknownData2;
+
+typedef enum <byte> {
+    DEFAULT,
+    CALM,
+    WILD,
+    RANDOM
+} WaveConditions;
+
+typedef struct {
+    WaveConditions waveConditions;
+    byte numberOfMisses;
+    byte numberOfLaps;
+} Conditions;
+
+typedef struct {
     Checksum checksum;
     byte unknown[8]; // ?
     AudioOptions audioOptions;
@@ -119,10 +142,12 @@ typedef struct {
     CustomName names[4];
     WatercraftSettings customSettings[4];
     WatercraftSettings defaultSettings[4]; // ? 
-    byte unknown2[9];
+    Conditions conditions[3];
     byte padding[7];
 
     Records records;
+    UnknownData unknownData[8];
+    UnknownData2 unknownData2[8];
 } SaveFile;
 
 BigEndian();
