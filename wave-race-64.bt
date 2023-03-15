@@ -54,24 +54,20 @@ typedef enum <byte> {
 } Character;
 
 typedef struct {
-    byte unknown[2]; // Time ?
+    BitfieldDisablePadding();
+    Character character : 3;
+    uint timeMilis : 21;
+    BitfieldEnablePadding();
+
     Initials initials;
     Level level;
-    byte unknown2; // Player?
 } Rank;
 
 typedef struct {
-    byte unknown[2];
-    Initials initials;
-    Level level;
-} Lap;
-
-typedef struct {
-    byte unknown;
     Rank rank1;
     Rank rank2;
     Rank rank3;
-    Lap lap;
+    Rank lap;
 } TimeRanks;
 
 typedef struct {
@@ -87,8 +83,8 @@ typedef struct {
 typedef struct {
     TimeRanks timeRanksSunnyBeach;
     TimeRanks timeRanksSunsetBay;
-    TimeRanks timeRanksDrakeLake;
     TimeRanks timeRanksMarineFortress;
+    TimeRanks timeRanksDrakeLake;
     TimeRanks timeRanksPortBlue;
     TimeRanks timeRanksTwilightCity;
     TimeRanks timeRanksSouthernIsland;
@@ -97,8 +93,8 @@ typedef struct {
     Scores scoresDolphinPark;
     Scores scoresSunnyBeach;
     Scores scoresSunsetBay;
-    Scores scoresDrakeLake;
     Scores scoresMarineFortress;
+    Scores scoresDrakeLake;
     Scores scoresPortBlue;
     Scores scoresTwilightCity;
     Scores scoresSouthernIsland;
