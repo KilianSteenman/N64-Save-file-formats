@@ -75,6 +75,15 @@ typedef struct {
 } Scores;
 
 typedef struct {
+    BitfieldDisablePadding();
+    uint unused1 : 3;           // Sure ?
+    uint firstLapTimeMilis : 21;
+    uint unused2 : 3;           // Sure ? 
+    uint firstTwoLapsTimeMilis : 21; // Lap 1 + Lap 2
+    BitfieldEnablePadding();    
+} LapRecord;
+
+typedef struct {
     TimeRanks timeRanksSunnyBeach;
     TimeRanks timeRanksSunsetBay;
     TimeRanks timeRanksMarineFortress;
@@ -82,7 +91,7 @@ typedef struct {
     TimeRanks timeRanksPortBlue;
     TimeRanks timeRanksTwilightCity;
     TimeRanks timeRanksSouthernIsland;
-    TimeRanks timeRanksGlacierCost;
+    TimeRanks timeRanksGlacierCoast;
 
     Scores scoresDolphinPark;
     Scores scoresSunnyBeach;
@@ -92,9 +101,18 @@ typedef struct {
     Scores scoresPortBlue;
     Scores scoresTwilightCity;
     Scores scoresSouthernIsland;
-    Scores scoresGlacierCost;
+    Scores scoresGlacierCoast;
     
     byte padding;
+
+    LapRecord lapRecordSunnyBeach;
+    LapRecord lapRecordSunsetBay;
+    LapRecord lapRecordMarineFortress;
+    LapRecord lapRecordDrakeLake;
+    LapRecord lapRecordPortBlue;
+    LapRecord lapRecordTwilightCity;
+    LapRecord lapRecordSouthernIsland;
+    LapRecord lapRecordGlacierCoast;
 } Records;
 
 typedef struct {
@@ -104,11 +122,10 @@ typedef struct {
 } WatercraftSettings;
 
 typedef struct {
-    byte unknown[6];
-} UnknownData;
-
-typedef struct {
-    byte unknown[5];
+    Character unknownCharacter1 : 3;    // ?
+    byte unknown;                       // ?
+    Character character : 3;            // ?
+    ushort unknown2;                    // ?
 } UnknownData2;
 
 typedef enum <byte> {
@@ -148,7 +165,7 @@ typedef struct {
     byte padding3[7];
 
     Records records;
-    UnknownData unknownData[8]; // Seems to be something with record data
+
     UnknownData2 unknownData2[8];
 } SaveFile;
 
