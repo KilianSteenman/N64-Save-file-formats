@@ -25,13 +25,6 @@ typedef enum <byte> {
     MONO = 2
 } AudioSetting;
 
-typedef struct {
-    ushort usedCustomSettings : 1;
-    ushort initial1 : 5; // 1 = A, 2 = B etc
-    ushort initial2 : 5; // 1 = A, 2 = B etc
-    ushort initial3 : 5; // 1 = A, 2 = B etc
-} Initials; // TODO: Rename this to RecordInfo or something / inline?
-
 typedef enum <byte> {
     NORMAL,
     HARD,
@@ -41,9 +34,9 @@ typedef enum <byte> {
 
 typedef enum <byte> {
     RYOTA_HAYAMI = 0,
-    AYUMI_STEWART = 1,
-    MILES_JETER = 2,
-    DAVE_MARINER = 3
+    DAVE_MARINER = 1,
+    AYUMI_STEWART = 2,
+    MILES_JETER = 3
 } Character;
 
 typedef struct {
@@ -52,7 +45,11 @@ typedef struct {
     uint timeMilis : 21;
     BitfieldEnablePadding();
 
-    Initials initials;
+    ushort usedCustomSettings : 1;
+    ushort initial1 : 5; // 1 = A, 2 = B etc
+    ushort initial2 : 5; // 1 = A, 2 = B etc
+    ushort initial3 : 5; // 1 = A, 2 = B etc
+
     Level level;
 } Rank;
 
@@ -66,7 +63,11 @@ typedef struct {
 typedef struct {
     Character character : 3;
     short score;
-    Initials initials;
+
+    ushort usedCustomSettings : 1;
+    ushort initial1 : 5; // 1 = A, 2 = B etc
+    ushort initial2 : 5; // 1 = A, 2 = B etc
+    ushort initial3 : 5; // 1 = A, 2 = B etc
 } HighScore;
 
 typedef struct {
