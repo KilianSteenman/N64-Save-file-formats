@@ -1,0 +1,53 @@
+//------------------------------------------------
+//--- 010 Editor v13.0.1 Binary Template
+//
+//      File: Super Smash Bros
+//   Authors: Shadow-Link
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+typedef enum <byte> {
+    MONO,
+    STEREO
+} AudioSetting;
+
+typedef struct {
+    byte targetsTime[3];
+    byte targetsRecord;
+    byte unknown[4];
+    byte platformsTime[3];
+    byte platformsRecord;
+    byte unknown2[20];
+} CharacterStats;
+
+typedef struct {
+    FSeek(0x450);
+    byte unknown1;
+    AudioSetting audioSetting;
+    short screenAdjustHorizontal;   // -14 to +14
+    short screenAdjustVertical;     // -14 to +14
+    byte unknown3[0x17];
+    CharacterStats mario;
+    CharacterStats fox;
+    CharacterStats dk;
+    CharacterStats samus;
+    CharacterStats unknown1;
+    CharacterStats link;
+    CharacterStats yoshi;
+    CharacterStats unknown3;
+    CharacterStats kirby;
+    CharacterStats pickachu;
+    CharacterStats unknown5;
+    byte unknown6[19];
+    byte unknown7[0x9]; // Changed when breaking a target, first byte might be total deaths or games played or game booted count?
+    byte padding[4];
+} SaveFile;
+
+BigEndian();
+SaveFile saveFile;
+SaveFile backupSaveFile;
