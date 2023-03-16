@@ -5,6 +5,8 @@
 *.eep
 *.eeprom
 *.pak
+*.sra
+*.srm
 
 # Mac
 .DS_Store

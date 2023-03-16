@@ -17,33 +17,68 @@ typedef enum <byte> {
 } AudioSetting;
 
 typedef struct {
+    byte unknown1[0x0C];
+    byte kosMario;
+    byte kosDk;
+    byte kosLink;
+    byte kosSamus;
+    byte kosYoshi;
+    byte kosKirby;
+    byte kosFox;
+    byte kosPickachu;
+    byte unknown2[4]; // Unlockable characters
+    uint secondsPlayed;
+    uint attackTotal;
+    uint damageTotal;
+    uint tkos;
+    ushort gamesPlayed;
+    byte unknown3[30];
+    ushort fourthPlace; // Incorrect
+    ushort loses;       // Incorrect
+    byte unknown4[16];
+} VersusStats;
+
+typedef struct {
     byte targetsTime[3];
     byte targetsRecord;
     byte unknown[4];
     byte platformsTime[3];
     byte platformsRecord;
     byte unknown2[20];
-} CharacterStats;
+} SinglePlayerStats;
 
 typedef struct {
-    FSeek(0x450);
+    VersusStats mario;
+    VersusStats fox;
+    VersusStats dk;
+    VersusStats samus;
+    VersusStats unknownVersusStats1;
+    VersusStats link;
+    VersusStats yoshi;
+    VersusStats unknownVersusStats2;
+    VersusStats kirby;
+    VersusStats pickachu;
+    VersusStats unknownVersusStats3;
+    VersusStats unknownVersusStats4;
+
     byte unknown1;
     AudioSetting audioSetting;
     short screenAdjustHorizontal;   // -14 to +14
     short screenAdjustVertical;     // -14 to +14
     byte unknown3[0x17];
-    CharacterStats mario;
-    CharacterStats fox;
-    CharacterStats dk;
-    CharacterStats samus;
-    CharacterStats unknown1;
-    CharacterStats link;
-    CharacterStats yoshi;
-    CharacterStats unknown3;
-    CharacterStats kirby;
-    CharacterStats pickachu;
-    CharacterStats unknown5;
-    byte unknown6[19];
+
+    SinglePlayerStats mario;
+    SinglePlayerStats fox;
+    SinglePlayerStats dk;
+    SinglePlayerStats samus;
+    SinglePlayerStats unknown1;
+    SinglePlayerStats link;
+    SinglePlayerStats yoshi;
+    SinglePlayerStats unknown3;
+    SinglePlayerStats kirby;
+    SinglePlayerStats pickachu;
+    SinglePlayerStats unknown5;
+    byte unknown6[22];
     byte unknown7[0x9]; // Changed when breaking a target, first byte might be total deaths or games played or game booted count?
     byte padding[4];
 } SaveFile;
