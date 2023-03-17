@@ -78,8 +78,9 @@ typedef struct {
     SinglePlayerStats kirby;
     SinglePlayerStats pickachu;
     SinglePlayerStats unknown5;
-    byte unknown6[22];
-    byte unknown7[0x9]; // Changed when breaking a target, first byte might be total deaths or games played or game booted count?
+    byte unknown6[21];
+    ushort gameStartedCount; // +1 when the start screen is displayed for the first time
+    byte unknown7[8]; // Hash?
     byte padding[4];
 } SaveFile;
 
