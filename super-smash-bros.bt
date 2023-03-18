@@ -26,7 +26,9 @@ typedef struct {
     byte kosKirby;
     byte kosFox;
     byte kosPickachu;
-    byte unknown2[4]; // Unlockable characters
+    byte kosLuigi;
+    byte kosCaptainFalcon;
+    byte unknown2[2]; // Unlockable characters
     uint secondsPlayed;
     uint attackTotal;
     uint damageTotal;
