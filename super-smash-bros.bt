@@ -52,10 +52,10 @@ typedef struct {
     VersusStats fox;
     VersusStats dk;
     VersusStats samus;
-    VersusStats unknownVersusStats1;
+    VersusStats luigi;
     VersusStats link;
     VersusStats yoshi;
-    VersusStats unknownVersusStats2;
+    VersusStats captainFalcon;
     VersusStats kirby;
     VersusStats pickachu;
     VersusStats unknownVersusStats3;
@@ -65,16 +65,18 @@ typedef struct {
     AudioSetting audioSetting;
     short screenAdjustHorizontal;   // -14 to +14
     short screenAdjustVertical;     // -14 to +14
-    byte unknown3[0x17];
+
+    uint unknownCharacterUnlockStatus;  // Changed from '30 00 00 00' to '04 01 00 10' when unlocking luigi, '07 05 00 90' when unlocking captain falcon
+    byte unknown3[0x13];
 
     SinglePlayerStats mario;
     SinglePlayerStats fox;
     SinglePlayerStats dk;
     SinglePlayerStats samus;
-    SinglePlayerStats unknown1;
+    SinglePlayerStats luigi;
     SinglePlayerStats link;
     SinglePlayerStats yoshi;
-    SinglePlayerStats unknown3;
+    SinglePlayerStats captainFalcon;
     SinglePlayerStats kirby;
     SinglePlayerStats pickachu;
     SinglePlayerStats unknown5;
