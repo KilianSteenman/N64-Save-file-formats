@@ -17,28 +17,33 @@ typedef enum <byte> {
 } AudioSetting;
 
 typedef struct {
-    byte unknown1[0x0C];
-    byte kosMario;
-    byte kosDk;
-    byte kosLink;
-    byte kosSamus;
-    byte kosYoshi;
-    byte kosKirby;
-    byte kosFox;
-    byte kosPickachu;
-    byte kosLuigi;
-    byte kosCaptainFalcon;
-    byte kosJigglypuff;
-    byte kosNess;
+    ushort mario;
+    ushort fox;
+    ushort luigi;
+    ushort dk;
+    ushort samus;
+    ushort link;
+    ushort ness;
+    ushort yoshi;
+    ushort kirby;
+    ushort pickachu;
+    ushort captainFalcon;
+    ushort jigglypuff;
+} StatCounters;
+
+typedef struct {    
+    StatCounters kos;
+
     uint secondsPlayed;
     uint attackTotal;
     uint damageTotal;
-    uint tkos;
+    uint selfDestructs;
     ushort gamesPlayed;
-    byte unknown3[30];
-    ushort fourthPlace; // Incorrect
-    ushort loses;       // Incorrect
-    byte unknown4[16];
+    
+    StatCounters averageParticipantCount; // TODO: Order seems to be different for this one?
+
+    ushort timesCpu;        // Incorrect
+    StatCounters participants;
 } VersusStats;
 
 typedef struct {
@@ -47,7 +52,6 @@ typedef struct {
     byte unknown[4];
     byte platformsTime[3];
     byte platformsRecord;
-    byte unknown2[9];
 } SinglePlayerStats;
 
 typedef struct {
@@ -73,28 +77,35 @@ typedef struct {
     byte unknown3[0x13];
 
     SinglePlayerStats mario;
-    byte unknownMario[11];
+    byte unknownMario[20];
     SinglePlayerStats fox;
-    byte unknownFox[11];
+    byte unknownFox[20];
     SinglePlayerStats dk;
-    byte unknownDk[11];
+    byte unknownDk[20];
     SinglePlayerStats samus;
-    byte unknownSamus[11];
+    byte unknownSamus[20];
     SinglePlayerStats luigi;
-    byte unknownLuigi[11];
+    byte unknownLuigi[20];
     SinglePlayerStats link;
-    byte unknownLink[11];
+    byte unknownLink[20];
     SinglePlayerStats yoshi;
-    byte unknownYoshi[11];
+    byte unknownYoshi[20];
     SinglePlayerStats captainFalcon;
-    byte unknownCaptainFalcon[11];
+    byte unknownCaptainFalcon[20];
     SinglePlayerStats kirby;
-    byte unknownKirby[11];
+    byte unknownKirby[20];
     SinglePlayerStats pickachu;
-    byte unknownPikachu[11];
+    byte unknownPikachu[20];
     SinglePlayerStats jigglypuff;
-    byte unknownJigglypuff[11];
+    byte unknownJigglypuff[20];
     SinglePlayerStats ness;
+    byte unknown6[3];
+
+    ushort unknown; // Seems to increase by 1?
+    LittleEndian();
+    ushort versusMatchesPlayedCountLittleEndian; // ?
+    BigEndian();
+    ushort versusMatchesPlayedCount;
     ushort gameStartedCount; // +1 when the start screen is displayed for the first time
     byte unknown7[8]; // Hash?
     byte padding[4];
