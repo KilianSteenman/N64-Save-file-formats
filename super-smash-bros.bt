@@ -73,8 +73,20 @@ typedef struct {
     short screenAdjustHorizontal;   // -14 to +14
     short screenAdjustVertical;     // -14 to +14
 
-    uint unknownCharacterUnlockStatus;  // Changed from '30 00 00 00' to '04 01 00 10' when unlocking luigi, '07 05 00 90' when unlocking captain falcon, '0A 0D 04 90' when unlocking jigglypuff
-    byte unknown3[0x13];
+    byte unknownUnlockStatus1; // Changed from '09' (base) '30' (played vs) to '04' when unlocking luigi, '07' when unlocking captain falcon, '0A' when unlocking jigglypuff
+    
+    byte unknownUnlockStatus2 : 1;
+    byte unknownUnlockStatus3 : 1;
+    byte unknownUnlockStatus4 : 1;
+    byte unknownUnlockStatus5 : 1;
+    byte characterUnlockedJigglypuff : 1;
+    byte characterUnlockedCaptainFalcon : 1;
+    byte characterUnlockedNess : 1;
+    byte characterUnlockedLuigi : 1;
+
+    byte unknown2; // Changed from '00' to '00' when unlocking luigi, '00' when unlocking captain falcon, '04' when unlocking jigglypuff
+    byte unknown3;
+    byte unknown4[0x13];
 
     SinglePlayerStats mario;
     byte unknownMario[20];
