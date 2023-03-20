@@ -46,12 +46,27 @@ typedef struct {
     StatCounters participants;
 } VersusStats;
 
+typedef enum <byte> {
+    VERY_EASY = 1,
+    EASY = 2,
+    NORMAL = 3,
+    HARD = 4,
+    VERY_HARD = 4
+} Difficulty;
+
 typedef struct {
+    uint highscore;
+    uint unknown1;
+    uint bonusCount;
+    Difficulty difficulty;
+    uint unknown2;
     byte targetsTime[3];
     byte targetsRecord;
-    byte unknown[4];
+    uint unknown3;
     byte platformsTime[3];
     byte platformsRecord;
+    byte timesPlayed; // ?
+    ushort unknown4;
 } SinglePlayerStats;
 
 typedef struct {
@@ -73,6 +88,7 @@ typedef struct {
     short screenAdjustHorizontal;   // -14 to +14
     short screenAdjustVertical;     // -14 to +14
 
+    // Below might be single playuer games played?
     byte unknownUnlockStatus1; // Changed from '09' (base) '30' (played vs) to '04' when unlocking luigi, '07' when unlocking captain falcon, '0A' when unlocking jigglypuff
     
     byte unknownUnlockStatus2 : 1;
@@ -86,32 +102,20 @@ typedef struct {
 
     byte unknown2; // Changed from '00' to '00' when unlocking luigi, '00' when unlocking captain falcon, '04' when unlocking jigglypuff
     byte unknown3;
-    byte unknown4[0x13];
+    byte unknown4[2];
 
     SinglePlayerStats mario;
-    byte unknownMario[20];
     SinglePlayerStats fox;
-    byte unknownFox[20];
     SinglePlayerStats dk;
-    byte unknownDk[20];
     SinglePlayerStats samus;
-    byte unknownSamus[20];
     SinglePlayerStats luigi;
-    byte unknownLuigi[20];
     SinglePlayerStats link;
-    byte unknownLink[20];
     SinglePlayerStats yoshi;
-    byte unknownYoshi[20];
     SinglePlayerStats captainFalcon;
-    byte unknownCaptainFalcon[20];
     SinglePlayerStats kirby;
-    byte unknownKirby[20];
     SinglePlayerStats pickachu;
-    byte unknownPikachu[20];
     SinglePlayerStats jigglypuff;
-    byte unknownJigglypuff[20];
     SinglePlayerStats ness;
-    byte unknown6[3];
 
     ushort unknown; // Seems to increase by 1?
     LittleEndian();
