@@ -151,13 +151,10 @@ typedef struct {
 
 typedef struct {
     Checksum checksum;
-    
     SaveData saveData;
+    byte padding[31656];
+    SaveData backup;
 } SaveFile;
 
 BigEndian();
 SaveFile saveFile;
-
-// Temp seek, backup data?
-FSeek(0x7DD8);
-SaveData backup;
