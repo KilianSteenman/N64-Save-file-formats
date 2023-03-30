@@ -1,0 +1,70 @@
+//------------------------------------------------
+//--- 010 Editor v13.0.1 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+typedef enum <byte> {
+    MONO = 3,
+    STEREO = 0,
+    HEADPHONES = 1 
+} AudioSettings;
+
+typedef enum <byte> {
+    MARIO = 0,
+    LUIGI = 1,
+    PEACH = 2,
+    TOAD = 3,
+    YOSHI = 4,
+    DK = 5,
+    WARIO = 6,
+    BOWSER = 7
+} Character;
+
+typedef struct {
+    byte time[2];
+    Character character; // First 4 bits?
+} Record;
+
+typedef struct {
+    Record best_data[5];
+    Record best_lap;
+    byte unknown;
+    int padding;
+    byte unknown;
+} TrackData;
+
+typedef struct {
+    TrackData luigi_raceway;
+    TrackData toads_turnpike;
+    TrackData wario_stadium;
+    TrackData dk_jungle_parkway;
+    TrackData moo_moo_farm;
+    TrackData frappe_snowland;
+    TrackData sherbet_land;
+    TrackData yoshi_valley;
+    TrackData koopa_troopa_beach;
+    TrackData choco_mountain;
+    TrackData royal_raceway;
+    TrackData banshee_boardwalk;
+    TrackData kalimari_desert;
+    TrackData mario_raceway;
+    TrackData bowsers_castle;
+    TrackData rainbow_road;
+} Data;
+
+typedef struct {
+    Data data;
+    int unknown;
+    AudioSettings audioSettings;
+} SaveFile;
+
+BigEndian();
+SaveFile saveFile;
