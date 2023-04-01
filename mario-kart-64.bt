@@ -20,17 +20,23 @@ typedef enum <byte> {
 typedef enum <byte> {
     MARIO = 0,
     LUIGI = 1,
-    PEACH = 2,
+    YOSHI = 2,
     TOAD = 3,
-    YOSHI = 4,
+    WARIO = 4,
     DK = 5,
-    WARIO = 6,
+    PEACH = 6,
     BOWSER = 7
 } Character;
 
 typedef struct {
     byte time[2];
-    Character character; // First 4 bits?
+    // P - 00001010 00101110 D3 2E 1:59:87
+    // L - 10010110 00101111 96 2F 2:01:82
+    // M - 10011011 00101111 9B 2F 2:01:87
+    // Y - 10001001 00110000 89 30 2:04:25
+    // P - 01001100 00001111 4C 0F 0:39:16
+    Character character : 4; // First 4 bits?
+    byte unknown : 4;
 } Record;
 
 typedef struct {
@@ -43,10 +49,10 @@ typedef struct {
 
 typedef struct {
     TrackData luigi_raceway;
+    TrackData moo_moo_farm;
     TrackData toads_turnpike;
     TrackData wario_stadium;
     TrackData dk_jungle_parkway;
-    TrackData moo_moo_farm;
     TrackData frappe_snowland;
     TrackData sherbet_land;
     TrackData yoshi_valley;
@@ -60,10 +66,64 @@ typedef struct {
     TrackData rainbow_road;
 } Data;
 
+typedef enum <byte> {
+    NONE = 0,
+    BRONZE = 1,
+    SILVER = 2,
+    GOLD = 3
+} Cup;
+
+typedef struct {
+    Cup special_cup : 2;
+    Cup star_cup : 2;
+    Cup flower_cup : 2;
+    Cup mushroom_cup : 2;
+} GrandPrix;
+
+typedef struct {
+    GrandPrix cc_50;
+    GrandPrix cc_100;
+    GrandPrix cc_150;
+    GrandPrix cc_mirror;
+} GrandPrixData;
+
+typedef struct {
+    AudioSettings audioSettings;
+    byte padding; // ?
+} Settings;
+
+typedef struct {
+    Record luigi_raceway_lap;
+    Record moo_moo_farm_lap;
+    Record koopa_troopa_beach_lap;
+    Record kalimari_desert_lap;
+    Record toads_turnpike_lap;
+    Record frappe_snowland_lap;
+    Record choco_mountain_lap;
+    Record mario_raceway_lap;
+    byte padding1[6];
+    short unknown; // Checksum?
+    Record wario_stadium_lap;
+    Record sherbet_land_lap;
+    Record royal_raceway_lap;
+    Record bowsers_castle_lap;
+    Record dks_jungle_parkway_lap;
+    Record yoshi_valley_lap;
+    Record banshee_boardwalk_lap;
+    Record rainbow_road_lap;
+    byte padding2[6];
+    short unknown; // Checksum?
+} LapData;
+
 typedef struct {
     Data data;
+    GrandPrixData grandPrixData;
+    Settings settings;
+    short checksum; // ?
     int unknown;
-    AudioSettings audioSettings;
+    short unknown;
+    Record unknownRecords[6];
+    LapData lapData;
 } SaveFile;
 
 BigEndian();
