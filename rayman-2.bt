@@ -1,0 +1,40 @@
+//------------------------------------------------
+//--- 010 Editor v13.0.1 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+#include "memory-pak.bt"
+
+typedef struct {
+    byte unknown[0x20];
+} Header; // ?
+
+typedef struct {
+    byte lums[8] <format=binary>; // ?
+} Level2;
+
+typedef struct {
+    Header header; // ?
+    byte unknown[181];    
+    Level2 level2;
+    Header backupHeader; // ?
+} SaveSlot;
+
+typedef struct {
+    SaveSlot slots[3];
+} SaveData;
+
+BigEndian();
+FSeek(0x300);
+MemoryPak memoryPak;
+
+FSeek(0x500);
+SaveData saveData;

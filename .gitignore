@@ -1,6 +1,9 @@
 # N64 rom formats
 *.z64
 *.n64
+*.zip
+
+# Save formats
 *.ram
 *.eep
 *.eeprom

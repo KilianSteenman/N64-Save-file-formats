@@ -1,0 +1,21 @@
+//------------------------------------------------
+//--- 010 Editor v13.0.1 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+typedef struct {
+    byte unknown[16];
+    byte title[16]; // 1A = A, 1B = B, 1C = C, etc
+} PageEntry;
+
+typedef struct {
+    PageEntry entries[3];
+} MemoryPak;
