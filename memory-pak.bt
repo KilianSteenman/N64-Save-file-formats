@@ -21,8 +21,8 @@ typedef struct {
     ubyte entryId;
     uint padding;
     byte title[16]; // 1A = A, 1B = B, 1C = C, etc
-} PageEntry;
+} GameEntry;
 
 typedef struct {
-    PageEntry entries[3];
+    GameEntry entries[16];
 } MemoryPak;
