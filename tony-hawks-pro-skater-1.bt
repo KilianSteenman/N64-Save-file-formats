@@ -1,0 +1,39 @@
+//------------------------------------------------
+//--- 010 Editor v13.0.1 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+#include "memory-pak.bt"
+
+typedef struct {
+    byte unknown1[2160];
+    uint sfx_volume;    // Not sure what the format is
+    uint music_volume;  // Not sure what the format is
+    byte unknown2[264];
+    uint player1_is_auto_kick_enabled;
+    uint player2_is_auto_kick_enabled;
+    uint player1_is_rumble_enabled;
+    uint player2_is_rumble_enabled;
+    uint player1_controls[4];
+    uint player2_controls[4];
+    byte unknown3[68];
+    uint trick_tips_enabled;
+    uint score_display_enabled;
+    byte unknown6[20];
+    byte padding[16];
+} SaveData;
+
+BigEndian();
+FSeek(0x300);
+MemoryPak memoryPak;
+
+FSeek(0x500);
+SaveData saveData;
