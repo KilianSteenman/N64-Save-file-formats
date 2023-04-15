@@ -18,13 +18,20 @@ typedef struct {
 } Header; // ?
 
 typedef struct {
+    byte lums : 5 <format=binary>;
+    byte unknown : 3; // ?
+} Level1;
+
+typedef struct {
     byte lums[8] <format=binary>; // ?
 } Level2;
 
 typedef struct {
     Header header; // ?
-    byte unknown[181];    
-    Level2 level2;
+    byte unknown1[12];
+    Level1 the_woods_of_light;
+    byte unknown2[169];    
+    Level2 the_fairy_glade;
     Header backupHeader; // ?
 } SaveSlot;
 

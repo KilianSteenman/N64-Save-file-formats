@@ -12,7 +12,14 @@
 //------------------------------------------------
 
 typedef struct {
-    byte unknown[16];
+    uint vendorId;
+    ushort gameId;
+    ushort iNode;
+    ubyte region;
+    ubyte blocks;
+    ubyte valid;
+    ubyte entryId;
+    uint padding;
     byte title[16]; // 1A = A, 1B = B, 1C = C, etc
 } PageEntry;
 
