@@ -21,6 +21,40 @@ typedef struct {
 } Header;
 
 typedef struct {
+    byte skulltula : 1;
+} Skulltulas;
+
+typedef enum <byte> {
+    EquipmentNone = -1,
+    Slingshot = 6,
+    KokiriSwordEq = 59
+} Equipment;
+
+typedef enum <uint16> {
+    KokiriSword = 1,
+    MasterSword = 2,
+    BiggoronSword = 3
+} Sword;
+
+typedef enum <uint16> {
+    DekuShield = 1,
+    HylianShield = 2,
+    MirrorShield = 3
+} Shield;
+
+typedef enum <uint16> {
+    KokiriTunic = 1,
+    GoronTunic = 2,
+    ZoraTunic = 3
+} Tunic;
+
+typedef enum <uint16> {
+    RegularBoots = 1,
+    IronBoots = 2,
+    HoverBoots = 3
+} Boot;
+
+typedef struct {
     int entranceIndex;
     AgeModifier ageModifier;
     short unknown;
@@ -37,8 +71,40 @@ typedef struct {
     byte magicMeterSize;
     byte magicAmount;
     ushort rupeeCount;
+    byte unknown2[0x30];
+    ushort sceneIndex;
+    Equipment weaponEquips[8];
+
+    Sword swordEquipment : 4;
+    Shield shieldEquipment : 4;
+    Tunic tunicEquipment : 4;
+    Boot bootsEquipment : 4;
+
+    uint16 unknown3;
+    Equipment inventory[24];
+    byte equipmentAmmoCount[0xF];
+    byte magicBeansBought;
+
+    Sword obtainedEquipmentSwords : 4;
+    Shield obtainedEquipmentShields : 4;
+    Tunic obtainedEquipmentTunic : 4;
+    Boot obtainedEquipmentBoots : 4;
+
+    uint16 unknown5;
+
+    uint32 obtainedUpgrades;
+    uint32 questStatusItems;
+
+    byte dungeonItems[0x14];
+    byte smallKeyCounts[0x14];
+
+    byte unknown4[0x9C];
+    ushort goldSkulltulaCount;
     
     byte data[0x1450];
+    
+    FSeek(0x4BAF);
+    Skulltulas skulltulas;
 } SaveSlot;
 
 typedef struct {
