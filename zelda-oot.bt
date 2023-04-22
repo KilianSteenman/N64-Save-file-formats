@@ -1,0 +1,55 @@
+//------------------------------------------------
+//--- 010 Editor v13.0.1 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+typedef enum <int32> {
+    Adult = 0,
+    Child = 1
+} AgeModifier;
+
+typedef struct {
+    byte data[0x20];
+} Header;
+
+typedef struct {
+    int entranceIndex;
+    AgeModifier ageModifier;
+    short unknown;
+    short cutsceneNumber;
+    ushort worldTime;
+    int isNightTime;
+    byte unknown1[10];
+    char ZELDAZ[6];
+    short deathCounter;
+    byte playerName[8];
+    short isDiskDriveOnly;
+    short heartContainerCount;
+    short health;
+    byte magicMeterSize;
+    byte magicAmount;
+    ushort rupeeCount;
+    
+    byte data[0x1450];
+} SaveSlot;
+
+typedef struct {
+    Header header;
+    SaveSlot saveSlot1;
+    SaveSlot saveSlot2;
+    SaveSlot saveSlot3;
+    SaveSlot backupSlot1;
+    SaveSlot backupSlot2;
+    SaveSlot backupSlot3;
+} SaveFile;
+
+BigEndian();
+SaveFile saveFile;
