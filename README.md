@@ -12,6 +12,7 @@ All formats are defined using 010 binary templates.
 | Rayman 2: The great escape | US | MPAK | [rayman-2.bt](../main/rayman-2.bt) | 1% | Shadow-Link |
 | Super Mario 64 | US | EEPROM | [super-mario-64.bt](../main/super-mario-64.bt) | 98% | [Bryc](http://bryc.github.io/sm64eep/) |
 | Super Smash Bros | US | SRAM | [super-smash-bros.bt](../main/super-smash-bros.bt) | 70% | Shadow-Link |
+| The Legend of Zelda: Ocarina of Time | US | SRAM | [zelda-oot.bt](../main/zelda-oot.bt) | 5% | [CloudModding](https://wiki.cloudmodding.com/oot/Save_Format) |
 | Tony Hawk's Pro Skater 1 | US | MPAK | [tony-hawks-pro-skater-1.bt](../main/tony-hawks-pro-skater-1.bt) | 5% | Shadow-Link |
 | Wave Race 64 | US | EEPROM | [wave-race-64.bt](../main/wave-race-64.bt) | 90% | Shadow-Link |
 
