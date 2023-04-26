@@ -24,32 +24,33 @@ typedef struct {
 } MarioCapLocation;
 
 typedef struct {
-    byte lostCapInLevelId : 1;
-    byte lostCapInShiftingSandLand : 1;
-    byte lostCapInTallTallMountain : 1;
-    byte lostCapInSnowmansLand : 1;
+    byte unknown : 1;
+    byte unknown : 1;
+    byte unknown : 1;
     byte seenStarDoorAnimationThirdFloor : 1;
-    byte unknown : 1;
-    byte unknown : 1;
-    byte unknown : 1;
+    byte lostCapInSnowmansLand : 1;
+    byte lostCapInTallTallMountain : 1;
+    byte lostCapInShiftingSandLand : 1;
+    byte lostCapInLevelId : 1;
 
-    byte isPortalMovedBack : 1;
-    byte isCastleMoatDrained : 1;
-    byte seenStarDoorAnimationSeenSecretSlide : 1;
-    byte seenStarDoorAnimationSeenWhompsFortress : 1;
-    byte seenStarDoorAnimationSeenCoolCoolMountain : 1;
-    byte seenStarDoorAnimationSeenJollyRogerBay : 1;
-    byte seenStarDoorAnimationBowserInTheDarkWorld : 1;
     byte seenStarDoorAnimationBowserInTheFireSea : 1;
+    byte seenStarDoorAnimationBowserInTheDarkWorld : 1;
+    byte seenStarDoorAnimationSeenJollyRogerBay : 1;
+    byte seenStarDoorAnimationSeenCoolCoolMountain : 1;
+    byte seenStarDoorAnimationSeenWhompsFortress : 1;
+    byte seenStarDoorAnimationSeenSecretSlide : 1;
+    byte isCastleMoatDrained : 1;
+    byte isPortalMovedBack : 1;
 
-    byte isSaveSlotInUse : 1;
-    byte isWingCapActivated : 1;
-    byte isMetalCapActivated : 1;
-    byte isVanishCapActivated : 1;
-    byte hasBasementKey : 1;
-    byte hasSecondFloorKey : 1;
-    byte isBasementUnlocked : 1;
     byte isSecondFloorUnlocked : 1;
+    byte isBasementUnlocked : 1;
+    byte hasSecondFloorKey : 1;
+    byte hasBasementKey : 1;
+    byte isVanishCapActivated : 1;
+    byte isMetalCapActivated : 1;
+    byte isWingCapActivated : 1;
+    byte isSaveSlotInUse : 1;
+
 } MiscFlags;
 
 typedef struct {
