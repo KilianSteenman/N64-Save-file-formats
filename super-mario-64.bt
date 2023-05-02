@@ -54,6 +54,7 @@ typedef struct {
 } MiscFlags;
 
 typedef struct {
+    byte cannonUnlockedForPreviousLevel : 1;
     byte star1 : 1;
     byte star2 : 1;
     byte star3 : 1;
@@ -61,7 +62,6 @@ typedef struct {
     byte star5 : 1;
     byte star6 : 1;
     byte star7 : 1;
-    byte cannonUnlockedForPreviousLevel : 1;
 } LevelFlags;
 
 typedef struct {

@@ -98,8 +98,9 @@ typedef struct {
     byte dungeonItems[0x14];
     byte smallKeyCounts[0x14];
 
-    byte unknown4[0x9C];
     ushort goldSkulltulaCount;
+
+    byte unknown4[0x9C];
     
     byte data[0x1450];
     
