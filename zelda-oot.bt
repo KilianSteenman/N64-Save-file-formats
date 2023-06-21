@@ -55,6 +55,48 @@ typedef enum <uint16> {
 } Boot;
 
 typedef struct {
+    uint32 unknown : 8;
+
+    uint32 hasGoldSkulltulaToken : 1;
+    uint32 hasGerudoCard : 1;
+    uint32 hasStoneOfAgony : 1;
+    uint32 hasZoraSapphire : 1;
+    uint32 hasGoronRuby : 1;
+    uint32 hasKokiriEmerald : 1;
+    uint32 hasSongOfStorms : 1;
+    uint32 hasSongOfTime : 1;
+    uint32 hasSunSong : 1;
+    uint32 hasSariasSong : 1;
+    uint32 hasEponasSong : 1;
+    uint32 hasZeldasLullaby : 1;
+    uint32 hasPreludeOfLight : 1;
+    uint32 hasNocturneOfShadow : 1;
+    uint32 hasRequiemOfSpirit : 1;
+    uint32 hasSerenadeOfWater : 1;
+    uint32 hasBoleroOfFire : 1;
+    uint32 hasMinuetOfForest : 1;
+    uint32 hasLightMedallion : 1;
+    uint32 hasShadowMedallion : 1;
+    uint32 hasSpiritMedallion : 1;
+    uint32 hasWaterMedallion : 1;
+    uint32 hasFireMedallion : 1;
+    uint32 hasForestMedallion : 1;
+} QuestStatusItems;
+
+typedef struct {
+    BitfieldRightToLeft();
+    byte bossKey : 1;
+    byte compass : 1;
+    byte map : 1;
+    BitfieldLeftToRight();
+} DungeonItems;
+
+typedef struct {
+    DungeonItems greatDekuTree;
+    DungeonItems dungeonItems[0x13];
+} DungeonItemList;
+
+typedef struct {
     int entranceIndex;
     AgeModifier ageModifier;
     short unknown;
@@ -93,9 +135,9 @@ typedef struct {
     uint16 unknown5;
 
     uint32 obtainedUpgrades;
-    uint32 questStatusItems;
+    QuestStatusItems questStatusItems;
 
-    byte dungeonItems[0x14];
+    DungeonItemList dungeonItemList;
     byte smallKeyCounts[0x14];
 
     ushort goldSkulltulaCount;
