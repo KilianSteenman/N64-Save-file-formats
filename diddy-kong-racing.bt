@@ -11,17 +11,19 @@
 //   History: 
 //------------------------------------------------
 
+const string INITIAL_COMPRESSION = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.?    ";
+
+string DecompressInitials( ushort initial1, ushort initial2, ushort initial3 ){
+    char c1 = INITIAL_COMPRESSION[initial1];
+    char c2 = INITIAL_COMPRESSION[initial2];    char c3 = INITIAL_COMPRESSION[initial3];
+    string s;       SPrintf( s, "%c%c%c", c1, c2, c3 );    return s;}
+
 typedef struct {
     ushort unused   : 1;
     ushort initial1 : 5; // 0 = A, 1 = B etc
     ushort initial2 : 5; // 0 = A, 1 = B etc
     ushort initial3 : 5; // 0 = A, 1 = B etc
-} Initials;
-
-typedef struct {
-    byte balloonCount : 7;
-    byte unknown : 1;
-} BalloonCount;
+} Initials <read=DecompressInitials(initial1, initial2, initial3)>;
 
 typedef enum <byte> {
     UNVISITED = 0,
@@ -37,7 +39,7 @@ typedef struct {
     byte car_challenge_completed : 1;
     byte hover_challenge_completed : 1;
     byte plane_challenge_completed : 1;
-} TajFlags;
+} TajFlags <format=binary>;
 
 typedef enum <byte> {
     NO_TROPHY = 0,
@@ -47,7 +49,7 @@ typedef enum <byte> {
 } Trophy;
 
 typedef struct {
-    ushort flags <format=binary>;
+    ushort flags : 16 <format=binary>;
 } WorldFlags;
 
 typedef struct {
@@ -62,12 +64,13 @@ typedef struct {
 } KeyFlags;
 
 typedef struct {
-    uint lighthouse_rocket_cutscene : 1;    uint tt_help_prompt : 1;    uint adventure_2_flag : 1;    uint dino_domain_boss_cutscene : 1;    uint sherbet_island_boss_cutscene : 1;    uint snowflake_mountain_boss_cutscene : 1;    uint dragon_forest_boss_cutscene : 1;    uint future_fun_land_boss_cutscene : 1;    uint dino_domain_boss_cutscene_2 : 1;    uint shertbet_island_boss_cutscene_2 : 1;    uint snowflake_mountain_boss_cutscene_2 : 1;    uint dragon_forest_boss_cutscene_2 : 1;    uint wizpig_face_cutscene : 1;    uint dino_domain_key_cutscene : 1;    uint sherbet_island_key_cutscene : 1;    uint snowflake_mountain_key_cutscene : 1;    uint dragon_forest_key_cutscene : 1;
+    uint lighthouse_rocket_cutscene : 1;    uint tt_help_prompt : 1;    uint adventure_2_flag : 1;    uint dino_domain_boss_cutscene : 1;    uint sherbet_island_boss_cutscene : 1;    uint snowflake_mountain_boss_cutscene : 1;    uint dragon_forest_boss_cutscene : 1;    uint future_fun_land_boss_cutscene : 1;    uint dino_domain_boss_cutscene_2 : 1;    uint shertbet_island_boss_cutscene_2 : 1;    uint snowflake_mountain_boss_cutscene_2 : 1;    uint dragon_forest_boss_cutscene_2 : 1;
+    uint unknown : 1;    uint wizpig_face_cutscene : 1;    uint dino_domain_key_cutscene : 1;    uint sherbet_island_key_cutscene : 1;    uint snowflake_mountain_key_cutscene : 1;    uint dragon_forest_key_cutscene : 1;
     uint unused : 14;
 } CutsceneFlags;
 
 typedef struct {
-    ushort checksum;    // Bytes + 5
+    ushort checksum;
     LevelStatus walrus_boss : 2;
     LevelStatus fossil_canyon : 2;
     LevelStatus pirate_lagoon : 2;
@@ -101,7 +104,9 @@ typedef struct {
     LevelStatus sherbet_2 : 2;
     LevelStatus dragon_2 : 2;
     LevelStatus wizpig_2 : 2;
-    TajFlags tajFlags <format=binary>;
+
+    TajFlags tajFlags;
+
     Trophy trophy_1 : 2;
     Trophy trophy_2 : 2;
     Trophy trophy_3 : 2;
@@ -146,28 +151,29 @@ typedef struct {
     byte unknown;
 } SaveSlot;
 
-typedef enum {
+typedef enum <long> {
     ENGLISH = 0,
-    FRENCH = 8
+    GERMAN = 1,
+    FRENCH = 2,
+    JAPANESE = 3
 } Language;
 
 typedef struct {
-    byte checksum;  // Bytes + 5
-    byte unknown[3];
-
-    uint unknown2 : 6;
-    uint subtitlesEnabled: 1;
-    uint unknown3 : 1;
-
-    byte unknown4[2];
-    Language language;
-} Settings;
+    // TODO: Still something wrong here, figure out what
+    long is_adventure_2_unlocked : 1;
+    long is_drumstick_unlocked : 1;
+    Language language : 2;
+    long is_tt_unlocked : 20 <format=binary>;
+    long are_subtitles_enabled : 1;
+    long unknown : 29;
+    long checksum: 7;
+} GlobalData;
 
 typedef struct {
     SaveSlot slot_1;
     SaveSlot slot_2;
     SaveSlot slot_3;
-    Settings settings;
+    GlobalData globalData;
 } SaveFile;
 
 BigEndian();
