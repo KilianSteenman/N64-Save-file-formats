@@ -6,7 +6,7 @@ All formats are defined using 010 binary templates.
 | Game | Region | Format | Template | Status | Credits |
 |------|--------|--------|--------- |--------|---------|
 | 1080 Snowboarding | US / JP | SRAM | [1080-snowboarding.bt](../main/1080-snowboarding.bt) | 85% | [Shadow-Link](https://www.shadow-link.nl) |
-| Diddy Kong Racing | US | EEPROM | [diddy-kong-racing.bt](../main/diddy-kong-racing.bt) | 5% | [Shadow-Link](https://www.shadow-link.nl) |
+| Diddy Kong Racing | US | EEPROM | [diddy-kong-racing.bt](../main/diddy-kong-racing.bt) | 85% | [DavidSM64](https://github.com/DavidSM64/Diddy-Kong-Racing/wiki/Save-Data-(EEPROM)) |
 | Goldeneye 007 | US | EEPROM | [goldeneye-007.bt](../main/goldeneye-007.bt) | 1% | [zeroKilo](https://github.com/zeroKilo/GE64SaveEditorWV/) |
 | Mario Kart 64 | US | EEPROM | [mario-kart-64.bt](../main/mario-kart-64.bt) | 50% | [Shadow-Link](https://www.shadow-link.nl) |
 | Rayman 2: The great escape | US | MPAK | [rayman-2.bt](../main/rayman-2.bt) | 1% | [Shadow-Link](https://www.shadow-link.nl) |
