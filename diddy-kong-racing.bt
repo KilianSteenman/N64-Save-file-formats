@@ -53,13 +53,11 @@ typedef struct {
 } WorldFlags;
 
 typedef struct {
-    byte unused : 1;
+    byte unused : 3;
     byte ancient_lake : 1;
     byte crescent_island : 1;
     byte snowball_valley : 1;
     byte boulder_canyon : 1;
-    byte unused : 1;
-    byte unused : 1;
     byte unused : 1;
 } KeyFlags;
 
